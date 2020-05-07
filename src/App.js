@@ -1,59 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import SearchBar from "./Components/SearchBar";
 import Spotify from "./api/spotifyFetch";
-import TrackList from "./Components/TrackList";
 import Playlist from "./Components/Playlist";
 import SearchResults from "./Components/SearchResults";
+import trackReducer from "./reducers/playlistTracks";
+import searchResultsReducer from "./reducers/searchResults";
+import PlaylistTracksContext from "./context/playlistTracks-context";
+import playlistNameReducer from './reducers/playlistname';
 
 import "./App.css";
 
+
+
 function App() {
-  const [searchResults, setSearchResults] = useState([]);
-  const [playlistName, setPlaylistName] = useState("");
-  const [playlistTracks, setPlayListTracks] = useState([]);
+  const [playlistName, dispatchPlaylistName] = useReducer(
+    playlistNameReducer,
+    ""
+  );
+
+  const [searchResults, dispatchSearchResults] = useReducer(
+    searchResultsReducer,
+    []
+  );
+  const [playlistTracks, dispatchPlaylistTracks] = useReducer(trackReducer, []);
 
   Spotify.getAccessToken();
 
-  //create
-  const addTrack = track =>
-    playlistTracks.find(savedTrack => savedTrack.ID === track.ID)
-      ? console.log("cant add twice")
-      : setPlayListTracks([...playlistTracks, track]);
-  //delete
-
-  const removeTrack = track => {
-    const remove = playlistTracks.filter(
-      existTrack => existTrack.ID !== track.ID
-    );
-    setPlayListTracks(remove);
-  };
-
-  const updatePlaylistName = name => setPlaylistName({ playlistName: name });
+  
 
   const searchSpotify = term => {
     if (Spotify.search(term)) {
-      Spotify.search(term).then(results => setSearchResults(results));
+      Spotify.search(term).then(results =>
+        dispatchSearchResults({
+          type: "GET_RESULTS",
+          results
+        })
+      );
     }
   };
 
   return (
-    <div className="App">
-      <SearchBar spotifySearch={searchSpotify} />
+    <PlaylistTracksContext.Provider
+      value={{ searchResults, dispatchPlaylistTracks, playlistTracks,playlistName,dispatchPlaylistName }}
+    >
+      <div className="App">
+        <SearchBar spotifySearch={searchSpotify} />
 
-      <SearchResults
-        isRemove={false}
-        addTrack={addTrack}
-        tracks={searchResults}
-      />
-      <Playlist
-        isRemove={true}
-        removeTrack={removeTrack}
-        removeTrack={removeTrack}
-        playlistTracks={playlistTracks}
-        playlistName={playlistName}
-        updatePlaylistName={updatePlaylistName}
-      />
-    </div>
+        <SearchResults isRemove={false} />
+        <Playlist
+          isRemove={true}
+          
+         
+        />
+      </div>
+    </PlaylistTracksContext.Provider>
   );
 }
 

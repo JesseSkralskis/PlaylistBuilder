@@ -7,9 +7,6 @@ export default function SearchBar({ spotifySearch }) {
     setTerm(e.target.value);
   };
 
-  const search = () => {
-    //   term === null || term === "" ? setError(true) : spotifySearch(term);
-  };
 
   const handleEnter = e => {
     if (e.key === "Enter") {
