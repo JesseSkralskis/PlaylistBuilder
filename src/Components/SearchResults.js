@@ -5,8 +5,28 @@ import PlaylistTracksContext from "../context/playlistTracks-context";
 export default function SearchResults({ isRemove }) {
   const { searchResults } = useContext(PlaylistTracksContext);
   return (
-    <div>
-      <TrackList isRemove={isRemove}  tracks={searchResults} />
+    <div
+      style={{
+        border: "2px solid green",
+        zIndex: "2",
+        width: "100%"
+      }}
+    >
+      <div
+        style={{
+          height: "100%"
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            border: "3px solid white"
+          }}
+        >
+          {" "}
+          <TrackList isRemove={isRemove} tracks={searchResults} />
+        </div>
+      </div>
     </div>
   );
 }

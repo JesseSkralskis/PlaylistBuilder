@@ -24,14 +24,29 @@ export default function Playlist({ isRemove }) {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        height: "100%",
+        width: "100%",
+        border: "yellow 2px solid"
+      }}
+    >
+      <TrackList isRemove={isRemove} tracks={playlistTracks} />
+
       <input
         type="text"
         value={name.playlistName}
         onChange={e => handleChange(e)}
       />
-      <TrackList isRemove={isRemove} tracks={playlistTracks} />
-      <a onClick={() => handleSave(name)}>SAVE TO SPOTIFY</a>
+
+      <a
+        style={{
+          border: "white 2px solid"
+        }}
+        onClick={() => handleSave(name)}
+      >
+        SAVE TO SPOTIFY
+      </a>
     </div>
   );
 }

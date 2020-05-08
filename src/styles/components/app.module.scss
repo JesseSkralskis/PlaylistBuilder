@@ -1,0 +1,55 @@
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: [left] 1fr [right] 1fr [end];
+  grid-template-rows: [header] 2fr [searchBar] 1fr [body] 9fr [end];
+}
+.backGround {
+  grid-row: searchBar/end;
+  grid-column: left/end;
+  background: url("/images/girl.jpg") 0 -7rem;
+  background-size: cover;
+}
+.overLay {
+  grid-row: searchBar/end;
+  grid-column: left/end;
+  background: transparentize(#3c005b, 0.5);
+  z-index: 2;
+}
+
+.headerContainer {
+  grid-row: header;
+  grid-column: left/end;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: lighten(#020202, 90);
+}
+.searchBarContainer {
+  grid-row: searchBar;
+  grid-column: left/end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  input {
+    width: 15rem;
+    height: 1.5rem;
+    margin-top: 2rem;
+  }
+}
+.resultsContainer {
+  grid-row: body;
+  grid-column: left/right;
+  overflow-y: scroll;
+  display: flex;
+}
+.playlistContainer {
+  grid-row: body;
+  grid-column: right/end;
+  display: flex;
+  border: white 2px solid;
+  z-index: 2;
+  justify-content: center;
+}

@@ -1,0 +1,54 @@
+.container {
+}
+.content {
+  display: grid;
+  grid-template-rows: [upper] 2fr [lower] 1.5fr [end];
+  grid-template-columns: [artist] 5fr [song] 5fr [buttons] 2fr [end];
+}
+.artistSong {
+  grid-row: upper;
+  grid-column: artist/buttons;
+  color: white;
+  //   border: white 2px solid;
+  display: flex;
+  justify-content: center;
+}
+.album {
+  grid-row: lower;
+  grid-column: artist/buttons;
+  color: white;
+  display: flex;
+  justify-content: center;
+  h3 {
+    font-size: 15px;
+    font-weight: 400;
+  }
+}
+.buttons {
+  grid-row: upper/end;
+  grid-column: buttons/end;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plus {
+  //   border: white 2px solid;
+  font-size: 29px;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  a {
+  }
+}
+
+.preview {
+  //   border: white 2px solid;
+  margin-top: 1rem;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}

@@ -1,5 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import PlaylistTracksContext from "../context/playlistTracks-context";
+import Spotify from "../api/spotifyFetch";
+import TrackStyles from "../styles/components/track.module.scss";
 
 export default function Track({
   Name,
@@ -9,11 +12,17 @@ export default function Track({
 
   isRemove
 }) {
-  const {
-    dispatchPlaylistTracks,
-    playlistTracks,
-    dispatchPlaylistName
-  } = useContext(PlaylistTracksContext);
+  const [previewResults, setPreviewResults] = useState("");
+  const { dispatchPlaylistTracks, playlistTracks } = useContext(
+    PlaylistTracksContext
+  );
+
+  useEffect(() => {
+    console.log("effect fired");
+    Spotify.getPreviewUrl(track.ID).then(results => {
+      setPreviewResults(results);
+    });
+  }, []);
   const handleAdd = track => {
     playlistTracks.find(ogtrack => ogtrack.ID === track.ID)
       ? console.log("already added")
@@ -22,6 +31,11 @@ export default function Track({
           track
         });
   };
+
+  // const handlePreview = id => {
+  //   console.log("called");
+
+  // };
 
   const renderAction = () =>
     isRemove ? (
@@ -39,12 +53,29 @@ export default function Track({
       <p onClick={() => handleAdd(track)}>+</p>
     );
   return (
-    <div>
-      <div>
-        <h3>{Name}</h3>
-        <h3>{Artist}</h3>
-        <h3>{Album}</h3>
-        <a>{renderAction()}</a>
+    <div className={TrackStyles.container}>
+      <div className={TrackStyles.content}>
+        <div className={TrackStyles.artistSong}>
+          <h3>
+            {Artist} - {Name}
+          </h3>
+        </div>
+        <div className={TrackStyles.album}>
+          {" "}
+          <h3>{Album}</h3>
+        </div>
+        <div className={TrackStyles.buttons}>
+          <div className={TrackStyles.plus}>
+            {" "}
+            <a>{renderAction()}</a>
+          </div>
+          <div className={TrackStyles.preview}>
+            {" "}
+            <a target="_blank" href={previewResults.URL}>
+              Preview Track
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
