@@ -2,9 +2,11 @@ import React, { useState, useContext } from "react";
 import TrackList from "./TrackList";
 import PlaylistTracksContext from "../context/playlistTracks-context";
 import Spotify from "../api/spotifyFetch";
+import PlaylistStyles from "../styles/components/playlist.module.scss";
+import whatInput from "what-input";
 
 export default function Playlist({ isRemove }) {
-  const [name, setName] = useState({ playlistName: "New PlayList" });
+  const [name, setName] = useState({ playlistName: "" });
   const handleChange = e => setName(e.target.value);
   const {
     playlistTracks,
@@ -24,29 +26,27 @@ export default function Playlist({ isRemove }) {
   };
 
   return (
-    <div
-      style={{
-        height: "100%",
-        width: "100%",
-        border: "yellow 2px solid"
-      }}
-    >
-      <TrackList isRemove={isRemove} tracks={playlistTracks} />
+    <div className={PlaylistStyles.container}>
+      <div className={PlaylistStyles.utilities}>
+        <h1></h1>
+        <input
+          placeholder="Your Playlist Name Here"
+          type="text"
+          value={name.playlistName}
+          onChange={e => handleChange(e)}
+        />
 
-      <input
-        type="text"
-        value={name.playlistName}
-        onChange={e => handleChange(e)}
-      />
-
-      <a
-        style={{
-          border: "white 2px solid"
-        }}
-        onClick={() => handleSave(name)}
-      >
-        SAVE TO SPOTIFY
-      </a>
+        <a style={{}} onClick={() => handleSave(name)}>
+          <p>
+            Save to
+            <br /> Spotify{" "}
+          </p>
+        </a>
+      </div>
+      <div className={PlaylistStyles.tracklistWrapper}>
+        {" "}
+        <TrackList isRemove={isRemove} tracks={playlistTracks} />
+      </div>
     </div>
   );
 }

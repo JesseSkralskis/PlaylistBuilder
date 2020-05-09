@@ -7,7 +7,6 @@ export default function SearchBar({ spotifySearch }) {
     setTerm(e.target.value);
   };
 
-
   const handleEnter = e => {
     if (e.key === "Enter") {
       spotifySearch(term);
@@ -15,7 +14,11 @@ export default function SearchBar({ spotifySearch }) {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        marginTop: "1rem"
+      }}
+    >
       <input
         placeholder={"Enter A Song, Album, or Artist"}
         type="text"

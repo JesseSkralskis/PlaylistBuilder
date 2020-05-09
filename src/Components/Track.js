@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+
 import PlaylistTracksContext from "../context/playlistTracks-context";
 import Spotify from "../api/spotifyFetch";
 import TrackStyles from "../styles/components/track.module.scss";
@@ -55,26 +55,27 @@ export default function Track({
   return (
     <div className={TrackStyles.container}>
       <div className={TrackStyles.content}>
-        <div className={TrackStyles.artistSong}>
-          <h3>
-            {Artist} - {Name}
-          </h3>
+        <div className={TrackStyles.artist}>
+          <h3>{Artist}</h3>
+        </div>
+
+        <div className={TrackStyles.song}>
+          <h3> {Name}</h3>
         </div>
         <div className={TrackStyles.album}>
           {" "}
           <h3>{Album}</h3>
         </div>
-        <div className={TrackStyles.buttons}>
-          <div className={TrackStyles.plus}>
-            {" "}
-            <a>{renderAction()}</a>
-          </div>
-          <div className={TrackStyles.preview}>
-            {" "}
-            <a target="_blank" href={previewResults.URL}>
-              Preview Track
-            </a>
-          </div>
+
+        <div className={TrackStyles.plus}>
+          {" "}
+          <a>{renderAction()}</a>
+        </div>
+        <div className={TrackStyles.preview}>
+          {" "}
+          <a target="_blank" href={previewResults.URL}>
+            Preview Track
+          </a>
         </div>
       </div>
     </div>

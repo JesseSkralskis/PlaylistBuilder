@@ -7,7 +7,6 @@ export default function SearchResults({ isRemove }) {
   return (
     <div
       style={{
-        border: "2px solid green",
         zIndex: "2",
         width: "100%"
       }}
@@ -19,8 +18,7 @@ export default function SearchResults({ isRemove }) {
       >
         <div
           style={{
-            height: "100%",
-            border: "3px solid white"
+            height: "100%"
           }}
         >
           {" "}
