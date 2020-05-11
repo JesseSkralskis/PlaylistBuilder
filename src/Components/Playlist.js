@@ -3,7 +3,6 @@ import TrackList from "./TrackList";
 import PlaylistTracksContext from "../context/playlistTracks-context";
 import Spotify from "../api/spotifyFetch";
 import PlaylistStyles from "../styles/components/playlist.module.scss";
-import whatInput from "what-input";
 
 export default function Playlist({ isRemove }) {
   const [name, setName] = useState({ playlistName: "" });

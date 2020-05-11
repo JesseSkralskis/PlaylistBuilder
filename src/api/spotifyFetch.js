@@ -5,14 +5,11 @@ const UriRedirect = "http://localhost:3001/";
 const Spotify = {
   getAccessToken: function() {
     if (usersAccessToken.length > 0) {
-      console.log("step 1");
-
       return usersAccessToken;
     } else if (
       window.location.href.match(/access_token=([^&]*)/) !== null &&
       window.location.href.match(/expires_in=([^&]*)/) !== null
     ) {
-      console.log("step 2");
       usersAccessToken = window.location.href.match(/access_token=([^&]*)/)[1];
 
       let expirationTime = window.location.href.match(/expires_in=([^&]*)/)[1];
@@ -21,7 +18,6 @@ const Spotify = {
       window.history.pushState(usersAccessToken, null, "/");
       return usersAccessToken;
     } else {
-      console.log("step 3");
       window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${UriRedirect}`;
     }
   },
@@ -59,8 +55,7 @@ const Spotify = {
   },
 
   savePlaylist(uriArray, plName) {
-    console.log("this is whats coming into uriArray" + uriArray);
-    console.log("this is the name" + plName);
+    
     let token = usersAccessToken;
     let userId = "not changing";
 
@@ -73,7 +68,7 @@ const Spotify = {
         .then(response => response.json())
         .then(jsonResponse => {
           userId = jsonResponse.id;
-          console.log(userId);
+    
 
           fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
             headers: {
@@ -105,7 +100,7 @@ const Spotify = {
                   return response.json();
                 })
                 .then(jsonResponse => {
-                  console.log(jsonResponse);
+                 
                   let plId2 = jsonResponse.snapshot_id;
                   console.log(plId2);
                 });

@@ -3,18 +3,26 @@
   height: 100vh;
   display: grid;
   grid-template-columns: [left] 1fr [right] 1fr [end];
-  grid-template-rows: [header] 1.8fr [searchBar] 1fr [body] 9fr [end];
+  grid-template-rows: [header] 1.25fr [searchBar] 1fr [body] 9fr [end];
 }
 .backGround {
-  grid-row: searchBar/end;
+  grid-row: body/end;
   grid-column: left/end;
   background: url("/images/girl.jpg") 0 -5rem;
   background-size: cover;
+  @media (max-width: 1093px) {
+    background: url("/images/girl.jpg") 0 0rem;
+    background-size: cover;
+  }
+  @media (max-width: 485px) {
+    background: url("/images/girl.jpg") -70px 0rem;
+    background-size: cover;
+  }
 }
 .overLay {
-  grid-row: searchBar/end;
+  grid-row: body/end;
   grid-column: left/end;
-  background: transparentize(#3c005b, 0.2);
+  background: transparentize(#3c005b, 0.5);
   z-index: 2;
 }
 
@@ -25,29 +33,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: lighten(#020202, 90);
+  background: #d8d5db;
 }
 .searchBarContainer {
+  background: #2d3142;
   grid-row: searchBar;
   grid-column: left/end;
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 2;
+
+  z-index: 3;
   input {
     color: white;
     border: none;
     background: transparent;
     width: 18rem;
-    height: 2rem;
-    margin-top: 2rem;
+    height: 50%;
+    // margin-top: 2rem;
     text-align: center;
     font-size: 25px;
+    @media (max-width: 600px) {
+      font-size: 20px;
+    }
 
     &::placeholder {
       text-align: center;
       font-size: 20px;
       color: white;
+      @media (max-width: 600px) {
+        font-size: 13px;
+      }
     }
   }
 }
@@ -55,24 +70,43 @@
 .searchBarContainer input:focus {
   outline: none;
 }
-.resultsContainer {
-  grid-row: body;
-  grid-column: left/right;
-  overflow-y: scroll;
-  display: flex;
+
+.srPLContainer {
+  margin-top: 2.5%;
+  z-index: 2;
+  grid-row: searchBar/end;
+  grid-column: left/end;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+
+  // grid-template-columns: repaeat(auto-fit, minmax(320px, 2fr));
 }
 
-.resultsContainer::-webkit-scrollbar {
-  display: none;
-}
 .playlistContainer {
-  grid-row: body;
-  grid-column: right/end;
+  margin-top: 5%;
+
   display: flex;
   overflow-y: scroll;
   z-index: 2;
   justify-content: center;
+  @media (max-width: 1000px) {
+    // min-height: 100%;
+    overflow: scroll;
+  }
 }
 .playlistContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.resultsContainer {
+  margin-top: 7%;
+  z-index: 2;
+
+  overflow-y: scroll;
+  @media (max-width: 1000px) {
+  }
+}
+
+.resultsContainer::-webkit-scrollbar {
   display: none;
 }

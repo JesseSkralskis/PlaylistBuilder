@@ -1,23 +1,45 @@
-.container {
-}
+
 .content {
-  margin: 2rem auto;
+  margin: 5% auto;
   width: 85%;
   display: grid;
   gap: 5%;
   grid-template-rows: [upper] 2fr [end];
   grid-template-columns: [artist] 2fr [song] 4fr [album] 4fr [preview] 1fr [plus] 1fr [end];
+  @media (min-width: 318px) {
+    margin: 5% 2%;
+    width: 60%;
+  }
+  @media (min-width: 374px) {
+    margin: 5% 7%;
+    width: 60%;
+  }
+
+  @media (min-width: 425px) {
+    margin: 5% 12%;
+    width: 60%;
+  }
+  @media (min-width: 426px) {
+    margin: 5% auto;
+    width: 85%;
+  }
 }
 .artist {
   grid-row: upper;
   grid-column: artist;
   color: white;
   //   border: white 2px solid;
-  display: flex;
+
   display: flex;
   align-items: center;
+  @media (max-width: 485px) {
+    justify-content: left;
+  }
   h3 {
     font-weight: 450;
+    @media (max-width: 485px) {
+      font-size: 14px;
+    }
   }
 }
 
@@ -28,6 +50,9 @@
   display: flex;
   align-items: center;
   h3 {
+    @media (max-width: 485px) {
+      font-size: 12px;
+    }
   }
 }
 .album {
@@ -40,6 +65,9 @@
   h3 {
     font-size: 15px;
     font-weight: 400;
+    @media (max-width: 485px) {
+      font-size: 13px;
+    }
   }
 }
 
@@ -56,6 +84,9 @@
     font-size: 33px;
     color: white;
     font-weight: 900;
+    @media (max-width: 485px) {
+      font-size: 25px;
+    }
   }
 }
 
@@ -71,5 +102,8 @@
     font-weight: 900;
     text-decoration: none;
     color: white;
+    @media (max-width: 485px) {
+      font-size: 10px;
+    }
   }
 }

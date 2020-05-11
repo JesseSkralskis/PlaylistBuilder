@@ -55,11 +55,13 @@ function App() {
           {" "}
           <SearchBar spotifySearch={searchSpotify} />
         </div>
-        <div className={AppStyle.resultsContainer}>
-          <SearchResults isRemove={false} />
-        </div>
-        <div className={AppStyle.playlistContainer}>
-          <Playlist isRemove={true} />
+        <div className={AppStyle.srPLContainer}>
+          <div className={AppStyle.resultsContainer}>
+            <SearchResults isRemove={false} />
+          </div>
+          <div className={AppStyle.playlistContainer}>
+            <Playlist isRemove={true} />
+          </div>{" "}
         </div>
       </div>
     </PlaylistTracksContext.Provider>
