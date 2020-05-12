@@ -32,10 +32,6 @@ export default function Track({
         });
   };
 
-  // const handlePreview = id => {
-  //   console.log("called");
-
-  // };
 
   const renderAction = () =>
     isRemove ? (

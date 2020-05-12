@@ -6,22 +6,25 @@ import PlaylistStyles from "../styles/components/playlist.module.scss";
 
 export default function Playlist({ isRemove }) {
   const [name, setName] = useState({ playlistName: "" });
+  const [error, setError] = useState("");
   const handleChange = e => setName(e.target.value);
-  const {
-    playlistTracks,
-    playlistName,
-    dispatchPlaylistName,
-    dispatchPlaylistTracks
-  } = useContext(PlaylistTracksContext);
+  const { playlistTracks, dispatchPlaylistTracks } = useContext(
+    PlaylistTracksContext
+  );
 
   const handleSave = name => {
     const uris = playlistTracks.map(track => track.URI);
-    console.log(uris);
-    console.log(name);
-    Spotify.savePlaylist(uris, name);
-    dispatchPlaylistTracks({
-      type: "RESET_LIST"
-    });
+    if (uris.length !== 0 && name !== { playlistName: "" }) {
+      Spotify.savePlaylist(uris, name);
+      dispatchPlaylistTracks({
+        type: "RESET_LIST"
+      });
+
+      setName({ playlistName: "" });
+    } else {
+      setError("There are no tracks or no name for the playlist");
+      setTimeout(() => setError(""), 4000);
+    }
   };
 
   return (
@@ -43,7 +46,18 @@ export default function Playlist({ isRemove }) {
         </a>
       </div>
       <div className={PlaylistStyles.tracklistWrapper}>
-        {" "}
+        {error !== "" && (
+          <div
+            style={{
+              color: "red",
+              marginLeft: "8rem",
+              textAlign: "center"
+            }}
+          >
+            {" "}
+            <h1>{error}</h1>
+          </div>
+        )}{" "}
         <TrackList isRemove={isRemove} tracks={playlistTracks} />
       </div>
     </div>

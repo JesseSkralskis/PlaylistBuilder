@@ -1,24 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import PlaylistTracksContext from "../context/playlistTracks-context";
+import Spotify from "../api/spotifyFetch";
 
-export default function SearchBar({ spotifySearch }) {
+export default function SearchBar() {
+  const { dispatchSearchResults } = useContext(PlaylistTracksContext);
+
+  const searchSpotify = term => {
+    if (Spotify.search(term)) {
+      console.log("search called");
+      Spotify.search(term).then(results =>
+        dispatchSearchResults({
+          type: "GET_RESULTS",
+          results
+        })
+      );
+    }
+  };
+
   const [term, setTerm] = useState(null);
-  const [error, setError] = useState(false);
+
   const handleChange = e => {
     setTerm(e.target.value);
   };
 
   const handleEnter = e => {
     if (e.key === "Enter") {
-      spotifySearch(term);
+      searchSpotify(term);
     }
   };
 
   return (
-    <div
-      style={{
-        marginTop: "1rem"
-      }}
-    >
+    <div style={{}}>
       <input
         placeholder={"Enter A Song, Album, or Artist"}
         type="text"

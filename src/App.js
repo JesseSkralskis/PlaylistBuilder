@@ -18,26 +18,16 @@ function App() {
 
   const [searchResults, dispatchSearchResults] = useReducer(
     searchResultsReducer,
-    []
+    null
   );
   const [playlistTracks, dispatchPlaylistTracks] = useReducer(trackReducer, []);
 
   Spotify.getAccessToken();
 
-  const searchSpotify = term => {
-    if (Spotify.search(term)) {
-      Spotify.search(term).then(results =>
-        dispatchSearchResults({
-          type: "GET_RESULTS",
-          results
-        })
-      );
-    }
-  };
-
   return (
     <PlaylistTracksContext.Provider
       value={{
+        dispatchSearchResults,
         searchResults,
         dispatchPlaylistTracks,
         playlistTracks,
@@ -53,7 +43,7 @@ function App() {
         <div className={AppStyle.backGround}></div>
         <div className={AppStyle.searchBarContainer}>
           {" "}
-          <SearchBar spotifySearch={searchSpotify} />
+          <SearchBar />
         </div>
         <div className={AppStyle.srPLContainer}>
           <div className={AppStyle.resultsContainer}>
