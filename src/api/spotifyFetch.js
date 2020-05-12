@@ -1,6 +1,6 @@
 let usersAccessToken = "";
 const clientId = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`;
-const UriRedirect = "http://localhost:3001/";
+const UriRedirect = "https://silly-wescoff-4d18fa.netlify.app";
 
 const Spotify = {
   getAccessToken: function() {
