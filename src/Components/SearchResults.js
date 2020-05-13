@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import TrackList from "./TrackList";
 import PlaylistTracksContext from "../context/playlistTracks-context";
+import SearchResultsStyle from "../styles/components/searchResults.module.scss";
 
 export default function SearchResults({ isRemove }) {
   const { searchResults } = useContext(PlaylistTracksContext);
@@ -16,15 +17,9 @@ export default function SearchResults({ isRemove }) {
   }, [searchResults]);
 
   return (
-    <div>
+    <div className={SearchResultsStyle.container}>
       {error !== "" && (
-        <div
-          style={{
-            zIndex: "2",
-            color: "red",
-            marginLeft: "10rem"
-          }}
-        >
+        <div className={SearchResultsStyle.error}>
           <h1>{error}</h1>
         </div>
       )}{" "}

@@ -18,7 +18,6 @@ export default function Track({
   );
 
   useEffect(() => {
-    console.log("effect fired");
     Spotify.getPreviewUrl(track.ID).then(results => {
       setPreviewResults(results);
     });
@@ -31,7 +30,6 @@ export default function Track({
           track
         });
   };
-
 
   const renderAction = () =>
     isRemove ? (

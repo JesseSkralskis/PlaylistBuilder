@@ -7,7 +7,6 @@ export default function SearchBar() {
 
   const searchSpotify = term => {
     if (Spotify.search(term)) {
-      console.log("search called");
       Spotify.search(term).then(results =>
         dispatchSearchResults({
           type: "GET_RESULTS",

@@ -5,7 +5,7 @@ import Spotify from "../api/spotifyFetch";
 import PlaylistStyles from "../styles/components/playlist.module.scss";
 
 export default function Playlist({ isRemove }) {
-  const [name, setName] = useState({ playlistName: "" });
+  const [name, setName] = useState("");
   const [error, setError] = useState("");
   const handleChange = e => setName(e.target.value);
   const { playlistTracks, dispatchPlaylistTracks } = useContext(
@@ -14,13 +14,13 @@ export default function Playlist({ isRemove }) {
 
   const handleSave = name => {
     const uris = playlistTracks.map(track => track.URI);
-    if (uris.length !== 0 && name !== { playlistName: "" }) {
+    if (uris.length !== 0 && name !== "") {
       Spotify.savePlaylist(uris, name);
       dispatchPlaylistTracks({
         type: "RESET_LIST"
       });
 
-      setName({ playlistName: "" });
+      setName("");
     } else {
       setError("There are no tracks or no name for the playlist");
       setTimeout(() => setError(""), 4000);
@@ -34,7 +34,7 @@ export default function Playlist({ isRemove }) {
         <input
           placeholder="Your Playlist Name Here"
           type="text"
-          value={name.playlistName}
+          value={name}
           onChange={e => handleChange(e)}
         />
 
@@ -47,15 +47,9 @@ export default function Playlist({ isRemove }) {
       </div>
       <div className={PlaylistStyles.tracklistWrapper}>
         {error !== "" && (
-          <div
-            style={{
-              color: "red",
-              marginLeft: "8rem",
-              textAlign: "center"
-            }}
-          >
+          <div className={PlaylistStyles.error}>
             {" "}
-            <h1>{error}</h1>
+            <h2>{error}</h2>
           </div>
         )}{" "}
         <TrackList isRemove={isRemove} tracks={playlistTracks} />
