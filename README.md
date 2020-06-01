@@ -11,7 +11,7 @@ Using Spotify’s Implicit Grant Flow authorization a user if not already logged
 
 
 
-![alt_text](/playlist-builder/public/images/spotifyLogin.png "image_tooltip")
+![alt_text](/public/images/spotifyLogin.png "image_tooltip")
 
 
 Once logged in the user will be redirected to the application and granted an access token that will allow him/her to interact with the Spotify Api. The user is requested to search for a song, artist, or album and when entered the results come in the search results portion of the application. 
@@ -21,7 +21,7 @@ Once logged in the user will be redirected to the application and granted an acc
 
 
 
-![alt_text](/playlist-builder/public/images/firstSearch.png "image_tooltip")
+![alt_text](/public/images/firstSearch.png "image_tooltip")
 
 
 
@@ -29,7 +29,7 @@ Once logged in the user will be redirected to the application and granted an acc
 
 
 
-![alt_text](/playlist-builder/public/images/searchResults.png "image_tooltip")
+![alt_text](/public/images/searchResults.png "image_tooltip")
 
 
 The user can now scroll through all the results, preview the tracks and add the desired tracks over to the playlist section. Once the tracks are in the playlist the user can choose to remove them by clicking the minus symbol,  make other searches and add new songs.
@@ -39,7 +39,7 @@ The user can now scroll through all the results, preview the tracks and add the 
 
 
 
-![alt_text](/playlist-builder/public/images/landingPlaylist.png "image_tooltip")
+![alt_text](/public/images/landingPlaylist.png "image_tooltip")
 
 
 After building the playlist to the desired length all that is left is naming the playlist and pressing the save to Spotify button then just like that the playlist will be saved in the users Spotify account ready to use immediately. 
@@ -49,7 +49,7 @@ After building the playlist to the desired length all that is left is naming the
 
 
 
-![alt_text](/playlist-builder/public/images/landingPlaylistName.png "image_tooltip")
+![alt_text](/public/images/landingPlaylistName.png "image_tooltip")
 
 
 
@@ -57,7 +57,7 @@ After building the playlist to the desired length all that is left is naming the
 
 
 
-![alt_text](/playlist-builder/public/images/playlistInSpotify.png "image_tooltip")
+![alt_text](/public/images/playlistInSpotify.png "image_tooltip")
 
 
 **Technology**
