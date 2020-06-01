@@ -1,6 +1,6 @@
 
 
-                                      Vibes
+                                                Vibes
 
 I love music and like to make lots of playlists on Spotify but the Spotify interface in my opinion is a little clunky. I decided to create a web application that allows anyone with a Spotify account to quickly and intuitively create playlists that save to the users Spotify account. 
 
